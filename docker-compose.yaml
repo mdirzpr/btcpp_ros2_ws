@@ -1,5 +1,5 @@
 services:
-  ros2_jazzy:
+  btcpp_ros2_jazzy:
     image: ros2_jazzy_ws:main
     build:
       context: .
