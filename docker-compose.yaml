@@ -1,0 +1,28 @@
+services:
+  ros2_jazzy:
+    image: ros2_jazzy_ws:main
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: ros2_jazzy_ws
+    # Ensures signals are actually passed and reaped in the container for shutdowns.
+    # https://docs.docker.com/compose/compose-file/compose-file-v3/#init
+    init: true
+    # Interactive shell
+    stdin_open: true
+    tty: true
+    # Networking and IPC for ROS 2
+    network_mode: host
+    ipc: host
+    env_file:
+      - .env
+    environment:
+      - PATH=${PATH}
+      - HOME=${HOME}
+    volumes:
+      # Mount the workshop source code
+      - ./src:/home/${USERNAME}/${WORKSPACE}/src:rw
+      - ./ws_files:/home/${USERNAME}/${WORKSPACE}/ws_files:rw
+      # Allows graphical programs in the container.
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${XAUTHORITY:-$HOME/.Xauthority}:/root/.Xauthority:rw

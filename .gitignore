@@ -1,3 +1,8 @@
+# Ignore build, install, and log directories
+build/
+install/
+log/
+
 # Prerequisites
 *.d
 
