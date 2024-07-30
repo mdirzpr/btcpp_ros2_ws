@@ -8,11 +8,11 @@ WORKSPACE=ros2_ws
 cd /home/${USERNAME}/${WORKSPACE}
 
 # Ensure the workspace directory has the correct ownership and permissions
-sudo chown -R ${USERNAME}:${USERNAME} ws_files
-sudo chmod -R u+rwx ws_files
+sudo chown -R ${USERNAME}:${USERNAME} src
+sudo chmod -R u+rwx src
 
 # Import repositories
-vcs import < ws_files/ros2.repos ws_files
+vcs import < src/ros2.repos src
 
 # Update package lists and install dependencies
 sudo apt-get update
